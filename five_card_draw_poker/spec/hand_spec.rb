@@ -2,30 +2,23 @@
 require_relative '../lib/hand'
 require_relative '../lib/card'
 
-RSpec.describe Hand do
-  let(:cards) do
-    [
-      Card.new('Hearts', 'Ace'),
-      Card.new('Hearts', 'King'),
-      Card.new('Hearts', 'Queen'),
-      Card.new('Hearts', 'Jack'),
-      Card.new('Hearts', '10')
-    ]
-  end
+describe Hand do
+  describe '#rank' do
+    it 'returns :high_card for a basic hand' do
+      hand = Hand.new([
+        Card.new('Hearts', '10'),
+        Card.new('Diamonds', 'J'),
+        Card.new('Clubs', '4'),
+        Card.new('Diamonds', '7'),
+        Card.new('Spades', '2')
+      ])
 
-  describe '#initialize' do
-    it 'creates a hand with five cards' do
-      hand = Hand.new(cards)
-      expect(hand.cards.size).to eq(5)
+      expect(hand.rank).to eq(:high_card)
     end
-  end
 
-  describe '#evaluate' do
-    it 'returns the correct hand ranking' do
-      hand = Hand.new(cards)
-      expect(hand.evaluate).to eq('Royal Flush') # Assuming all cards are of the same suit
-    end
+    # Add more tests for different hand ranks:
+    # it 'returns :pair for a hand with a pair' do ...
+    # it 'returns :straight for a straight' do ...
+    # ... and so on
   end
-
-  # Add more tests for other methods of the Hand class as needed
 end
