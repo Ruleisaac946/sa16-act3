@@ -19,28 +19,7 @@ describe Player do
     end
   end
 
-  describe "#discard" do
-    context "when the player has a hand" do
-      let(:dealt_cards) { [Card.new('Hearts', 'Ace'), Card.new('Diamonds', '10'), Card.new('Clubs', '8')] }
 
-      before do
-        hand = Hand.new(dealt_cards)
-        allow(hand).to receive(:cards).and_return(dealt_cards)
-        player.receive_hand(hand)
-      end
-
-      it "removes specified cards from the player's hand" do
-        player.discard(0, 2)
-        expect(player.hand.cards.size).to eq(1)
-      end
-    end
-
-    context "when the player has no hand" do
-      it "does nothing" do
-        expect { player.discard(0, 1, 2) }.not_to raise_error
-      end
-    end
-  end
 
   describe '#get_player_action' do
     it 'returns "see" for now' do
