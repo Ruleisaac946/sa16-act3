@@ -18,9 +18,4 @@ class Game
     end
   end
 
-  # Methods to implement:
-  # - manage_bets (handling betting rounds)
-  # - determine_winner
-  # - play_round (control a single round within the game)
-  # - play (control the overall game flow)
 end

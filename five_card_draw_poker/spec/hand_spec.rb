@@ -16,9 +16,6 @@ describe Hand do
       expect(hand.rank).to eq(:high_card)
     end
 
-    # Add more tests for different hand ranks:
-    # it 'returns :pair for a hand with a pair' do ...
-    # it 'returns :straight for a straight' do ...
-    # ... and so on
+
   end
 end

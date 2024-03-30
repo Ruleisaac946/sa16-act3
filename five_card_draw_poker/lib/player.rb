@@ -8,16 +8,31 @@ class Player
     @pot = 0
   end
 
-  def discard(indices)
-    # Assumes 'indices' is an array of card positions to discard (e.g., [0, 3])
-    cards_to_discard = indices.map { |index| @hand.cards[index] }
-    @hand.cards -= cards_to_discard
-    cards_to_discard
+  def receive_hand(hand)
+    @hand = hand
   end
 
+  def discard(*card_indices)
+    return unless @hand
+
+    card_indices.flatten.sort.reverse_each { |index| @hand.cards.delete_at(index) }
+
+
+    puts "Cards after discard: " + @hand.cards.map(&:to_s).join(", ")
+
+    indices.map do |index|
+      card = @hand.cards[index]
+      puts "Removing card (index #{index}): #{card}"
+
+      card if card.is_a?(Card)
+    end.compact
+  end
+
+
+
+
+
   def get_player_action
-    # Placeholder for now. This would use input/output
-    # to get the player's choice: fold, see, or raise
     "see"
   end
 

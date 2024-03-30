@@ -1,6 +1,6 @@
 # spec/deck_spec.rb
 require_relative '../lib/deck'
-require_relative '../lib/card' # Assuming you need this
+require_relative '../lib/card'
 
 describe Deck do
   let(:deck) { Deck.new }

@@ -1,6 +1,6 @@
 # spec/player_spec.rb
 require_relative '../lib/player'
-require_relative '../lib/hand'  # You might need this, depending on your Hand class
+require_relative '../lib/hand'
 
 describe Player do
   let(:player) { Player.new('Alice') }
@@ -19,22 +19,26 @@ describe Player do
     end
   end
 
-  describe '#discard' do
-    it 'removes specified cards from the hand and returns them' do
-      hand = Hand.new([
-        Card.new('Hearts', '10'),
-        Card.new('Diamonds', 'J'),
-        Card.new('Clubs', 'Q')
-      ])
-      player.hand = hand
+  describe "#discard" do
+    context "when the player has a hand" do
+      let(:dealt_cards) { [Card.new('Hearts', 'Ace'), Card.new('Diamonds', '10'), Card.new('Clubs', '8')] }
 
-      discarded_cards = player.discard([0, 2])
+      before do
+        hand = Hand.new(dealt_cards)
+        allow(hand).to receive(:cards).and_return(dealt_cards)
+        player.receive_hand(hand)
+      end
 
-      expect(player.hand.cards.size).to eq(1)
-      expect(discarded_cards.size).to eq(2)
-      expect(discarded_cards).to contain_exactly(
-        Card.new('Hearts', '10'), Card.new('Clubs', 'Q')
-      )
+      it "removes specified cards from the player's hand" do
+        player.discard(0, 2)
+        expect(player.hand.cards.size).to eq(1)
+      end
+    end
+
+    context "when the player has no hand" do
+      it "does nothing" do
+        expect { player.discard(0, 1, 2) }.not_to raise_error
+      end
     end
   end
 

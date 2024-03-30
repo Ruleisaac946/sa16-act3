@@ -1,7 +1,7 @@
 # spec/game_spec.rb
 require_relative '../lib/game'
-require_relative '../lib/player' # Assuming you need this
-require_relative '../lib/deck'  # Assuming you need this
+require_relative '../lib/player'
+require_relative '../lib/deck'
 
 describe Game do
   let(:game) { Game.new(['Alice', 'Bob']) }
@@ -23,7 +23,7 @@ describe Game do
 
   describe '#deal_cards' do
     it 'gives each player a hand of 5 cards' do
-      # You might need a mock or a stub for 'Deck' here
+
       game.deal_cards
       game.players.each do |player|
         expect(player.hand.cards.size).to eq(5)

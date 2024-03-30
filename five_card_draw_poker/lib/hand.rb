@@ -64,4 +64,9 @@ class Hand
   def cards=(new_cards)
     @cards = new_cards
   end
+
+  def remove(card)
+    @cards.delete(card)
+  end
+
 end
